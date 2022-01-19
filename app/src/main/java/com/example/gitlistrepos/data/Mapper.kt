@@ -12,6 +12,7 @@ fun ReposOwnerModel.toDomain() = ReposOwnerDomainModel(
 
 
 fun ReposModel.toDomain() = ReposDomainModel(
+    id = id,
     full_name = full_name,
     owner = owner.toDomain(),
     commits_url = commits_url.dropLast(6)

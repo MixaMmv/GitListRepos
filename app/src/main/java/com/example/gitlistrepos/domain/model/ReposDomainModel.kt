@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ReposDomainModel(
+    val id: Int,
     val full_name: String,
     val owner: ReposOwnerDomainModel,
     val commits_url: String

@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.example.gitlistrepos.R
 import com.example.gitlistrepos.databinding.FragmentReposListBinding
@@ -30,13 +32,21 @@ class ReposListFragment: Fragment(R.layout.fragment_repos_list) {
             when (it.itemId) {
                 R.id.arrowLeft -> reposListViewModel.processUiEvent(UiEvent.OnLeftArrowClick)
                 R.id.arrowRight -> reposListViewModel.processUiEvent(UiEvent.OnRightArrowClick)
-//                R.id.arrowRight -> Log.d("CHECK", "previousState.since.toString()")
-
             }
             true
         }
 
         viewBinding.rvRepos.adapter = reposAdapter
+
+        val lm = (viewBinding.rvRepos.layoutManager as LinearLayoutManager)
+
+        viewBinding.rvRepos.addOnScrollListener(object: RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                reposListViewModel.processUiEvent(UiEvent.LoadMoreRepos(lm.findLastVisibleItemPosition()))
+            }
+        })
+
         reposListViewModel.viewState.observe(viewLifecycleOwner, ::render)
         reposListViewModel.singleLiveEvent.observe(viewLifecycleOwner, ::onSingleEvent)
     }

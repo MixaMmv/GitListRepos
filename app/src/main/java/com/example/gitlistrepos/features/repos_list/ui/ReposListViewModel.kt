@@ -21,7 +21,7 @@ class ReposListViewModel(
             repos = emptyList(),
             isLoading = true,
             errorMessage = null,
-            since = 0
+            lastSince = 0
         )
 
 
@@ -46,9 +46,10 @@ class ReposListViewModel(
 
             is DataEvent.SuccessReposRequest -> {
                 return previousState.copy(
-                    repos = event.repos,
+                    repos = previousState.repos + event.repos,
                     isLoading = false,
-                    errorMessage = null
+                    errorMessage = null,
+                    lastSince = event.repos.last().id
                 )
             }
 
@@ -59,18 +60,23 @@ class ReposListViewModel(
                 )
             }
 
-            is UiEvent.OnLeftArrowClick -> {
-                if (previousState.since != 0) {
-                    val since = previousState.since - 100
-                    processUiEvent(UiEvent.GetRepos(since))
-                    return previousState.copy(since = since)
-                }
-            }
+//            is UiEvent.OnLeftArrowClick -> {
+//                if (previousState.since != 0) {
+//                    val since = previousState.since - 100
+//                    processUiEvent(UiEvent.GetRepos(since))
+//                    return previousState.copy(since = since)
+//                }
+//            }
+//
+//            is UiEvent.OnRightArrowClick -> {
+//                val since = previousState.since + 100
+//                processUiEvent(UiEvent.GetRepos(since))
+//                return previousState.copy(since = since)
+//            }
 
-            is UiEvent.OnRightArrowClick -> {
-                val since = previousState.since + 100
-                processUiEvent(UiEvent.GetRepos(since))
-                return previousState.copy(since = since)
+            is UiEvent.LoadMoreRepos -> {
+                if (event.index + 1 == previousState.repos.size)
+                    processUiEvent(UiEvent.GetRepos(previousState.lastSince + 1))
             }
 
 

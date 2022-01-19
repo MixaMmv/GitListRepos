@@ -3,6 +3,8 @@ package com.example.gitlistrepos.data.api.model
 import com.google.gson.annotations.SerializedName
 
 data class ReposModel (
+    @SerializedName("id")
+    val id: Int,
     @SerializedName("full_name")
     val full_name: String,
     @SerializedName("owner")

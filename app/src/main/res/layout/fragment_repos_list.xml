@@ -14,17 +14,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_repos_list"
-        app:title="GitListReposApp"
-        />
+        app:title="GitListReposApp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvRepos"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:scrollbars="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/tbRepos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tbRepos"
         tools:listitem="@layout/item_repo" />
 
 
