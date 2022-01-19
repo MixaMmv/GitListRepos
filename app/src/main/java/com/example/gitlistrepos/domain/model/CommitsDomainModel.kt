@@ -1,14 +1,13 @@
 package com.example.gitlistrepos.domain.model
 
-import com.google.gson.annotations.SerializedName
 
 
 data class CommitsDomainModel(
-    val commit: CommitsCommitDomaintModel,
+    val commit: CommitsCommitDomainModel,
     val parents: List<CommitsParentsDomainModel>
 )
 
-data class CommitsCommitDomaintModel(
+data class CommitsCommitDomainModel(
     val message: String,
     val author: CommitsAuthorDomainModel,
 )

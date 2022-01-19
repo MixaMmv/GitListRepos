@@ -9,7 +9,11 @@ data class ReposDomainModel(
     val full_name: String,
     val owner: ReposOwnerDomainModel,
     val commits_url: String
-): Parcelable
+) : Parcelable
 
-
+@Parcelize
+data class ReposOwnerDomainModel(
+    val login: String,
+    val avatar_url: String
+) : Parcelable
 

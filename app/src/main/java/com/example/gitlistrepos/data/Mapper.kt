@@ -3,7 +3,6 @@ package com.example.gitlistrepos.data
 import com.example.gitlistrepos.data.api.model.*
 import com.example.gitlistrepos.domain.model.*
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 
 
 fun ReposOwnerModel.toDomain() = ReposOwnerDomainModel(
@@ -32,7 +31,7 @@ fun CommitsAuthorModel.toDomain(): CommitsAuthorDomainModel {
     )
 }
 
-fun CommitsCommitModel.toDomain() = CommitsCommitDomaintModel(
+fun CommitsCommitModel.toDomain() = CommitsCommitDomainModel(
     message = message ?: "",
     author = author.toDomain()
 )

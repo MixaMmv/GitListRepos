@@ -10,3 +10,10 @@ data class ReposModel (
     @SerializedName("commits_url")
     val commits_url: String
 )
+
+data class ReposOwnerModel (
+    @SerializedName("login")
+    val login: String,
+    @SerializedName("avatar_url")
+    val avatar_url: String
+)
